@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Printing - Print & Sip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <!-- <link rel="stylesheet" href="style.css" /> -->
+  <style>
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+section {
+  background-color: #fff;
+  margin: 30px auto;
+  padding: 40px 20px;
+  max-width: 1000px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #1a237e;
+  border-left: 4px solid #3949ab;
+  padding-left: 12px;
+}
+
+section p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+iframe {
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.slider-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+.slide img {
+  width: 100%;
+  height: 350px;
+  object-fit:contain;
+  border-radius: 10px;
+position: relative;
+top: -20px;
+}
+
+/* Tombol navigasi */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 30px;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.slider-btn.prev {
+  left: 10px;
+}
+
+.slider-btn.next {
+  right: 10px;
+}
+
+.slider-btn:hover {
+  background-color: rgba(0,0,0,0.7);
+}
+
+
+
+    /* Font & Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Section Styling */
+  section {
+    background-color: #fff;
+    margin: 30px auto;
+    padding: 40px 20px;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  }
+  
+  section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #1a237e;
+    border-left: 4px solid #3949ab;
+    padding-left: 12px;
+  }
+  
+  section p {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+  
+  /* Image Styling */
+  .small-img {
+    width: 30%;
+    margin: 10px 1.66%;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .small-img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Images */
+  @media (max-width: 768px) {
+    .small-img {
+      width: 45%;
+      margin: 10px 2.5%;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .small-img {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+  
+  /* Iframe Styling */
+  iframe {
+    width: 100%;
+    max-width: 100%;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Dropdown (Optional for reference) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a {
+    color: #333;
+    padding: 10px 16px;
+    display: block;
+    text-decoration: none;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f0f0f0;
+  }
+
+  .slide {
+  width: 100%;           /* atau ukuran fix, misal 300px */
+  height: 320px;         /* ini bikin ukuran kotak tetap */
+  object-fit: contain;   /* ini bikin gambar muat penuh */
+  border: 2px solid #ccc;
+  padding: 5px;
+  background-color: #fff; /* opsional, biar kelihatan */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  position: relative;
+  z-index: 3;
+  background-color: #0066cc;
+  padding: 17px;
+}
+
+/* Printing */
+.dropdown-content a[href="print.html"]:hover {
+  color: #66b2ff;
+}
+
+/* Cafe */
+.dropdown-content a[href="cafe.html"]:hover {
+  color: #ffcc00; 
+}
+
+/* Aluminium */
+.dropdown-content a[href="alu.html"]:hover {
+  color: #cccccc; 
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav .logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+ul.nav-links {
+  list-style-type: none;
+  display: flex;
+}
+
+ul.nav-links li {
+  padding: 0 20px;
+}
+
+ul.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+ul.nav-links li a:hover {
+  color: #66b2ff;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  color: white;
+  font-size: 16px;
+  border: none;
+  background-color: inherit;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.dropbtn:hover {
+  color: #0052a3;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #005bb8;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #0052a3;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.header-logo {
+  color: white;
+  position: absolute;
+  bottom: 11px;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* --- Tambahan supaya responsive di HP --- */
+/* --- Responsive tetap horizontal di HP --- */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: row; /* Tetap baris */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  ul.nav-links {
+    flex-direction: row; /* Tetap horizontal */
+    flex-wrap: wrap; /* Kalau sempit, pindah ke baris bawah */
+    justify-content: center;
+    width: auto;
+    margin-top: 10px;
+  }
+
+  ul.nav-links li {
+    padding: 10px;
+  }
+
+  ul.nav-links li a {
+    font-size: 14px; /* Sedikit kecil biar muat di layar HP */
+  }
+
+  .dropdown-content {
+    position: absolute;
+    background-color: #005bb8;
+    min-width: 120px;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropbtn {
+    padding: 10px;
+  }
+
+  .header-logo {
+    position: static;
+    margin-bottom: 0;
+  }
+}
+
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="index.html" class="header-logo">Print & Eat</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Services</a>
+                <div class ="dropdown-content">
+                    <a href="print.html">Printing</a>
+                    <a href="cafe.html">Cafe</a>
+                    <a href="alu.html">Aluminium</a>
+                </div>
+            </li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="Maps.html">Map</a></li>
+        </ul>
+    </nav>
+  </header>
+  <section id="print">
+    <h2>Print</h2>
+    <p>
+      We offer a wide range of printing services to meet your personal and business needs.
+      Our offerings include digital printing for fast and high-quality results, offset printing for large-volume and cost-effective production,
+      as well as screen printing for apparel, merchandise, and promotional materials.
+      Whether you need vibrant marketing materials, custom t-shirts, or premium business cards, 
+      we have the technology and expertise to deliver top-notch results tailored to your requirements.
+    </p>
+  </section>
+
+  <section id="showcase">
+    <h2>Showcase</h2>
+    <div class="slider-container">
+      <button class="slider-btn prev" onclick="plusSlides(-1, 0)">&#10094;</button>
+      <div class="slider-wrapper" id="slider1">
+        <div class="slide"><img src="assets/ACRILIK 5.png" /></div>
+        <div class="slide"><img src="assets/ACRILIK 7.png" /></div>
+        <div class="slide"><img src="assets/TENDO.png" /></div>
+        <div class="slide"><img src="assets/TUMBLER SCD.png" /></div>
+        <div class="slide"><img src="assets/VWVFBDB.png" /></div>
+        <div class="slide"><img src="assets/MOBIL SD.png" /></div>
+        <div class="slide"><img src="assets/FREEBGB.png" /></div>
+        <div class="slide"><img src="assets/INVITATION Q.png" /></div>
+        <div class="slide"><img src="assets/BAJUUUU.png" /></div>
+      </div>
+      <button class="slider-btn next" onclick="plusSlides(1, 0)">&#10095;</button>
+    </div>
+  </section>
+  
+
+
+  <!-- <section id="maps">
+    <h2>Location</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3811.8734053654885!2d125.58179687485288!3d-8.55331979149024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d01e7cf99cd7633%3A0x40af222f4c3f89db!2sPeso%20Printing!5e1!3m2!1sen!2sid!4v1745226103029!5m2!1sen!2sid"
+      width="100%" height="300" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section> -->
+
+  <section id="contact">
+    <h2>Contact Person</h2>
+    <p>
+      <strong>Printing</strong><br />
+      WhatsApp:<br />
+      Edo Hogiarto: +670 7475 1071<br />
+      Ronny: +670 7372 7373
+    </p>
+  </section>
+
+
+
+  <!-- <section id="about">
+    <h2>About Us</h2>
+    <p>
+      Print & Eat is a modern printing space that combines professional printing services 
+      with the relaxed atmosphere of a café — creating a unique and comfortable experience for our customers.
+    </p>
+  </section> -->
+
+  <section id="sales">
+    <h2>Sales & Marketing</h2>
+    <p>
+      Contact our Sales team for information on wholesale pricing, bulk orders, and exclusive promotions. 
+      We’re here to help you get the best deals tailored to your business or event needs.
+    </p>
+  </section>
+
+  <section id="machine">
+    <h2>Machine</h2>
+    <div class="slider-container">
+      <button class="slider-btn prev" onclick="plusSlides(-1, 1)">&#10094;</button>
+      <div class="slider-wrapper" id="slider2">
+        <div class="slide"><img src="assets/WhatsApp Image 2025-04-21 at 3.09.20 PM.jpeg" /></div>
+        <div class="slide"><img src="assets/WhatsApp Image 2025-04-21 at 3.04.27 PM.jpeg" /></div>
+        <div class="slide"><img src="assets/WhatsApp Image 2025-04-21 at 3.08.44 PM.jpeg" /></div>
+        <div class="slide"><img src="assets/WhatsApp Image 2025-04-21 at 3.08.44 PM (1).jpeg" /></div>
+      </div>
+      <button class="slider-btn next" onclick="plusSlides(1, 1)">&#10095;</button>
+    </div>
+  </section>
+
+ 
+
+
+  
+  <script>
+    let slideIndex = [0, 0];
+    const sliders = [
+      document.getElementById("slider1"),
+      document.getElementById("slider2")
+    ];
+  
+    function plusSlides(n, sliderNum) {
+      slideIndex[sliderNum] += n;
+      showSlides(sliderNum);
+    }
+  
+    function showSlides(sliderNum) {
+      const slider = sliders[sliderNum];
+      const slides = slider.querySelectorAll(".slide");
+      if (slideIndex[sliderNum] >= slides.length) slideIndex[sliderNum] = 0;
+      if (slideIndex[sliderNum] < 0) slideIndex[sliderNum] = slides.length - 1;
+  
+      const offset = -slideIndex[sliderNum] * 100;
+      slider.style.transform = `translateX(${offset}%)`;
+    }
+  
+    function autoSlide(sliderNum) {
+      slideIndex[sliderNum]++;
+      showSlides(sliderNum);
+    }
+  
+    window.onload = () => {
+      showSlides(0);
+      showSlides(1);
+      setInterval(() => autoSlide(0), 4000);
+      setInterval(() => autoSlide(1), 4000);
+    };
+  </script>
+  
+  
+ 
+
+  <!-- <script src="script.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,169 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    position: relative;
+    z-index: 3;
+    background-color: #0066cc;
+    padding: 17px;
+  }
+  
+  /* Printing */
+  .dropdown-content a[href="print.html"]:hover {
+    color: #66b2ff;
+  }
+  
+  /* Cafe */
+  .dropdown-content a[href="cafe.html"]:hover {
+    color: #ffcc00; 
+  }
+  
+  /* Aluminium */
+  .dropdown-content a[href="alu.html"]:hover {
+    color: #cccccc; 
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  nav .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  ul.nav-links {
+    list-style-type: none;
+    display: flex;
+  }
+  
+  ul.nav-links li {
+    padding: 0 20px;
+  }
+  
+  ul.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  ul.nav-links li a:hover {
+    color: #66b2ff;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    color: white;
+    font-size: 16px;
+    border: none;
+    background-color: inherit;
+    padding: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .dropbtn:hover {
+    color: #0052a3;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #005bb8;
+    min-width: 160px;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #0052a3;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .header-logo {
+    color: white;
+    position: absolute;
+    bottom: 11px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* --- Tambahan supaya responsive di HP --- */
+  /* --- Responsive tetap horizontal di HP --- */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: row; /* Tetap baris */
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+  
+    ul.nav-links {
+      flex-direction: row; /* Tetap horizontal */
+      flex-wrap: wrap; /* Kalau sempit, pindah ke baris bawah */
+      justify-content: center;
+      width: auto;
+      margin-top: 10px;
+    }
+  
+    ul.nav-links li {
+      padding: 10px;
+    }
+  
+    ul.nav-links li a {
+      font-size: 14px; /* Sedikit kecil biar muat di layar HP */
+    }
+  
+    .dropdown-content {
+      position: absolute;
+      background-color: #005bb8;
+      min-width: 120px;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+    }
+  
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  
+    .dropbtn {
+      padding: 10px;
+    }
+  
+    .header-logo {
+      position: static;
+      margin-bottom: 0;
+    }
+  }
+  
+  

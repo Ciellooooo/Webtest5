@@ -1,0 +1,287 @@
+/* RESET BAWAAN */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* HEADER NAVIGATION */
+  header {
+    background-color: #0066cc;
+    padding: 20px 0;
+  }
+  
+  nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .logo a {
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  }
+  
+  .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  .nav-links li a:hover {
+    color: #ffcc00;
+  }
+  
+  /* Dropdown */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #0066cc;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 10px;
+  }
+  
+  .dropdown-content a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #005bb5;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* JUMBOTRON */
+  #jumbotron {
+    background: linear-gradient(to bottom, #0066cc, #004c99);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+  }
+  
+  .jumbotron-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .jumbotron-text {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 20px auto;
+    line-height: 1.8;
+  }
+  
+  .header-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    gap: 30px;
+  }
+  
+  .jumbotron-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* MINI TEXT FLEX */
+  .mini-text-flex {
+    margin-top: 20px;
+  }
+  
+  .mini-text {
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+  .clickable-text {
+    color: #ffcc00;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  /* CARD SECTION */
+  .container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+  }
+  
+/* Card Header */
+.card-header {
+    display: flex;
+    align-items: center;  /* Vertikal rata tengah */
+    justify-content: flex-start; /* Mengatur elemen ke kiri */
+    gap: 10px;  /* Jarak antara icon dan judul */
+}
+
+.icon {
+    font-size: 2rem;
+    margin-right: 10px; /* Menambahkan jarak setelah icon */
+}
+
+.card-header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0; /* Menghilangkan margin default pada h2 */
+}
+
+/* Media Query untuk tampilan mobile */
+@media (max-width: 768px) {
+    .card-header {
+        flex-direction: column;  /* Mengubah menjadi kolom pada layar kecil */
+        align-items: center;     /* Menyusun icon dan judul di tengah secara vertikal */
+    }
+
+    .icon {
+        font-size: 2.5rem;  /* Membesarkan icon agar tetap jelas di layar kecil */
+        margin-bottom: 5px; /* Memberikan jarak antara icon dan judul */
+    }
+
+    .card-header h2 {
+        font-size: 1.25rem;  /* Menyesuaikan ukuran font agar lebih kecil di layar kecil */
+    }
+}
+
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    background-color: #0066cc;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #005bb5;
+  }
+  
+  /* SLIDER SECTION */
+  .section-slider {
+    background: #f5f5f5;
+    padding: 50px 0;
+  }
+  
+  .image-slider {
+    position: relative;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  .slide {
+    display: none;
+  }
+  
+  .slide.active {
+    display: block;
+  }
+  
+  .slide img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .slide-text {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .navigation {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .slider-btn {
+    width: 12px;
+    height: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .slider-btn.active {
+    background-color: #0066cc;
+  }
+  
+  /* FOOTER */
+  .footer {
+    background-color: #0066cc;
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 14px;
+    margin-top: 50px;
+  }
+  
+  /* RESPONSIVE DESIGN */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      margin-top: 20px;
+    }
+  
+    .header-flex {
+      flex-direction: column;
+    }
+  
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restaurant Menu</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1541542684-4b3c4e5ef24b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+
+    nav {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.7);
+      border: 2px solid #1d4ed8;
+      color: #1d4ed8;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+      backdrop-filter: blur(3px);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #0066cc;
+      color: white;
+    }
+
+    main {
+      display: flex;
+      padding: 2rem;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+
+    .menu-container {
+      flex: 3;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);  /* 3 kolom per baris */
+      gap: 1.5rem;
+      overflow-y: auto;
+      padding-right: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .menu-item {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.5s ease;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .menu-item.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .menu-item-content {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .menu-item-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #1e3a8a;
+    }
+
+    .menu-item-content p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .menu-item-content span {
+      font-size: 1.2rem;
+      color: #e91e63;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    /* Custom scrollbar */
+    .menu-container::-webkit-scrollbar {
+      width: 8px;
+    }
+    .menu-container::-webkit-scrollbar-thumb {
+      background: #1d4ed8;
+      border-radius: 10px;
+    }
+    .menu-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    footer {
+      margin-top: auto;
+      background: rgba(30, 58, 138, 0.9);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Responsive Layout */
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+        height: auto;
+      }
+      .menu-container {
+        grid-template-columns: repeat(2, 1fr);  /* 2 kolom per baris di mobile */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .menu-container {
+        grid-template-columns: 1fr;  /* 1 kolom per baris di mobile kecil */
+      }
+    }
+
+ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  position: relative;
+  z-index: 3;
+  background-color: #0066cc;
+  padding: 17px;
+}
+
+/* Printing */
+.dropdown-content a[href="print.html"]:hover {
+  color: #66b2ff;
+}
+
+/* Cafe */
+.dropdown-content a[href="cafe.html"]:hover {
+  color: #ffcc00; 
+}
+
+/* Aluminium */
+.dropdown-content a[href="alu.html"]:hover {
+  color: #cccccc; 
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav .logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+ul.nav-links {
+  list-style-type: none;
+  display: flex;
+}
+
+ul.nav-links li {
+  padding: 0 20px;
+}
+
+ul.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+ul.nav-links li a:hover {
+  color: #66b2ff;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  color: white;
+  font-size: 16px;
+  border: none;
+  background-color: inherit;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.dropbtn:hover {
+  color: #0052a3;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #005bb8;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #0052a3;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.header-logo {
+  color: white;
+  position: absolute;
+  bottom: 11px;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* --- Tambahan supaya responsive di HP --- */
+/* --- Responsive tetap horizontal di HP --- */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: row; /* Tetap baris */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  ul.nav-links {
+    flex-direction: row; /* Tetap horizontal */
+    flex-wrap: wrap; /* Kalau sempit, pindah ke baris bawah */
+    justify-content: center;
+    width: auto;
+    margin-top: 10px;
+  }
+
+  ul.nav-links li {
+    padding: 10px;
+  }
+
+  ul.nav-links li a {
+    font-size: 14px; /* Sedikit kecil biar muat di layar HP */
+  }
+
+  .dropdown-content {
+    position: absolute;
+    background-color: #005bb8;
+    min-width: 120px;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropbtn {
+    padding: 10px;
+  }
+
+  .header-logo {
+    position: static;
+    margin-bottom: 0;
+  }
+}
+
+
+    
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html">Print & Eat</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li class="dropdown">
+          <a href="#">Services</a>
+          <div class="dropdown-content">
+            <a href="print.html">Printing</a>
+            <a href="cafe.html">Cafe</a>
+            <a href="alu.html">Aluminium</a>
+          </div>
+        </li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="Maps.html">Map</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<nav>
+  <button class="filter-btn active" data-category="all">All</button>
+  <button class="filter-btn" data-category="food">Food</button>
+  <button class="filter-btn" data-category="drinks">Drinks</button>
+  <button class="filter-btn" data-category="desserts">Desserts</button>
+</nav>
+
+<main>
+  <div class="menu-container">
+    <div class="menu-item" data-category="food">
+      <img src="https://via.placeholder.com/300x200?text=Fried+Rice" alt="Fried Rice">
+      <div class="menu-item-content">
+        <h3>Special Fried Rice</h3>
+        <p>Fried rice with chicken, shrimp, and egg</p>
+        <span>Rp25,000</span>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="drinks">
+      <img src="https://via.placeholder.com/300x200?text=Iced+Tea" alt="Iced Tea">
+      <div class="menu-item-content">
+        <h3>Sweet Iced Tea</h3>
+        <p>Refreshing sweet iced tea</p>
+        <span>Rp8,000</span>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="desserts">
+      <img src="https://via.placeholder.com/300x200?text=Brownies" alt="Brownies">
+      <div class="menu-item-content">
+        <h3>Chocolate Brownies</h3>
+        <p>Soft and rich chocolate brownies</p>
+        <span>Rp15,000</span>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="food">
+      <img src="https://via.placeholder.com/300x200?text=Grilled+Chicken" alt="Grilled Chicken">
+      <div class="menu-item-content">
+        <h3>Honey Grilled Chicken</h3>
+        <p>Grilled chicken with honey sauce</p>
+        <span>Rp30,000</span>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="drinks">
+      <img src="https://via.placeholder.com/300x200?text=Coffee+Milk" alt="Coffee Milk">
+      <div class="menu-item-content">
+        <h3>Milk Coffee with Palm Sugar</h3>
+        <p>Creamy coffee with natural palm sugar</p>
+        <span>Rp18,000</span>
+      </div>
+    </div>
+
+    <div class="menu-item" data-category="desserts">
+      <img src="https://via.placeholder.com/300x200?text=Vanilla+Ice+Cream" alt="Vanilla Ice Cream">
+      <div class="menu-item-content">
+        <h3>Vanilla Ice Cream</h3>
+        <p>Homemade classic vanilla ice cream</p>
+        <span>Rp12,000</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Feel free to explore our menu!</p>
+</footer>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const menuItems = document.querySelectorAll('.menu-item');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const category = button.getAttribute('data-category');
+
+      menuItems.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Animasi load menu items
+  window.addEventListener('DOMContentLoaded', () => {
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add('show');
+      }, index * 100); // delay dikit satu-satu
+    });
+  });
+</script>
+
+</body>
+</html>
